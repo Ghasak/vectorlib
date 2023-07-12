@@ -221,61 +221,52 @@ where
 
 impl<T> Vector2d<T>
 where
-    T: Add<T, Output = T>
-        + Sub<T, Output = T>
-        + AddAssign
-        + Mul<T, Output = T>
-        + Div<T, Output = T>
+    T: std::fmt::Display
         + Copy
-        + std::fmt::Display,
+        + AddAssign
+        + Add<T, Output = T>
+        + Sub<T, Output = T>
+        + Mul<T, Output = T>
+        + Div<T, Output = T>,
 {
     pub fn new(x: T, y: T) -> Self {
         Self { x, y }
     }
-
-    // pub fn add<U>(&self, other: U) -> Vector2d<T>
-    // where
-    //     T: Add<U, Output = T>,
-    //     U: Copy,
-    // {
-    //     Vector2d {
-    //         x: self.x + other,
-    //         y: self.y + other,
-    //     }
-    // }
-    //
-    // pub fn sub<U>(&self, other: U) -> Vector2d<T>
-    // where
-    //     T: Sub<U, Output = T>,
-    //     U: Copy,
-    // {
-    //     Vector2d {
-    //         x: self.x - other,
-    //         y: self.y - other,
-    //     }
-    // }
-    //
-    // pub fn mul<U>(&self, other: U) -> Vector2d<T>
-    // where
-    //     T: Mul<U, Output = T>,
-    //     U: Copy,
-    // {
-    //     Vector2d {
-    //         x: self.x * other,
-    //         y: self.y * other,
-    //     }
-    // }
-    //
-    // pub fn div<U>(&self, other: U) -> Vector2d<T>
-    // where
-    //     T: Div<U, Output = T>,
-    //     U: Copy,
-    // {
-    //     Vector2d {
-    //         x: self.x / other,
-    //         y: self.y / other,
-    //     }
-    // }
+    /// Construct a zero 2d vector
+    pub fn zero_vector() -> Self
+    where
+        T: num_traits::NumAssign
+            + num_traits::Zero
+            + std::fmt::Display
+            + Copy
+            + AddAssign
+            + Add<T, Output = T>
+            + Sub<T, Output = T>
+            + Mul<T, Output = T>
+            + Div<T, Output = T>,
+    {
+        Self {
+            x: T::zero(),
+            y: T::zero(),
+        }
+    }
+    pub fn ones_vector() -> Self
+    where
+        T: num_traits::NumAssign
+            + num_traits::One
+            + std::fmt::Display
+            + Copy
+            + AddAssign
+            + Add<T, Output = T>
+            + Sub<T, Output = T>
+            + Mul<T, Output = T>
+            + Div<T, Output = T>,
+    {
+        Self {
+            x: T::one(),
+            y: T::one(),
+        }
+    }
 }
 
 // -----------------------------------------
@@ -338,4 +329,3 @@ where
         write!(f, "< {}, {} >", self.x, self.y)
     }
 }
-
