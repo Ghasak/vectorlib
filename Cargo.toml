@@ -5,4 +5,22 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+name = "vectorlib"
+path = "src/lib.rs"
+
 [dependencies]
+num-traits = "0.2"
+log = "0.4.19"
+colored = "2.0.4"
+rand = "0.8.5"
+
+[dev-dependencies]
+assert_approx_eq = "1.1.0"
+
+
+[[test]]
+name = "vector2dlib-tests"
+path = "src/test/mod.rs"
+
+
